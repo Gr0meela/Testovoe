@@ -3,7 +3,7 @@ using UnityEngine;
 public class CubeHealth : MonoBehaviour
 {
     [SerializeField] private CubeDataSO _cubeData;
-    public int Health { private get; set; }
+    public int Health;
     void Start()
     {
         Health = _cubeData.Health;

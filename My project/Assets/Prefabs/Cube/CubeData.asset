@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9a1d9b51f8d704087b68d70edb6511, type: 3}
   m_Name: CubeData
   m_EditorClassIdentifier: 
-  Health: 0
-  Damage: 0
+  Health: 80
+  Damage: 10
