@@ -4,10 +4,10 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 
-public class Cube : MonoBehaviour
+public class CubeMovement : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
-    private List <Cube> _targets;
+    private List <CubeMovement> _targets;
     [SerializeField] private Transform _target;
     void Start()
     {
@@ -26,8 +26,8 @@ public class Cube : MonoBehaviour
     }
     void FindTarget()
     {
-        _targets = FindObjectsOfType<Cube>().ToList();
-        _targets.Remove(gameObject.GetComponent<Cube>());
+        _targets = FindObjectsOfType<CubeMovement>().ToList();
+        _targets.Remove(gameObject.GetComponent<CubeMovement>());
         if (_targets.Count == 0)
         {
             _target = null;
