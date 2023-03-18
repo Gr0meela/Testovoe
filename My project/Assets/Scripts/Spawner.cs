@@ -9,16 +9,29 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         _planeMesh = _plane.mesh;
-        Spawn(_cube);
-    }
-    void Spawn(GameObject cube)
-    {
-        for(int i = 0; i<_cubesCount; i++)
+        for (int i = 0; i < _cubesCount; i++)
         {
             float xPos = Random.Range(-_planeMesh.bounds.size.x, _planeMesh.bounds.size.x);
             float zPos = Random.Range(-_planeMesh.bounds.size.z, _planeMesh.bounds.size.z);
-            Vector3 position = new Vector3(xPos, 0, zPos);
-            Instantiate(cube, position, Quaternion.identity);
+            Spawn(_cube, xPos, zPos);
         }
+    }
+    private void Update()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            spawnPosition = hit.point;
+            if (Input.GetMouseButtonDown(0))
+            {
+                Spawn(_cube, spawnPosition.x, spawnPosition.z);
+            }
+        }
+    }
+    void Spawn(GameObject cube, float x, float z)
+    {
+        Vector3 position = new Vector3(x, 0, z);
+        Instantiate(cube, position, Quaternion.identity);
     }
 }
