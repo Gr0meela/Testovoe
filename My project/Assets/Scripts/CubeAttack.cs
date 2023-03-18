@@ -5,11 +5,11 @@ using UnityEngine;
 public class CubeAttack : MonoBehaviour
 {
     public int Score = 0;
-    private int _damage;
+    public int Damage { get; private set; }
     [SerializeField] private CubeDataSO _cubeData;
     void Start()
     {
-        _damage = _cubeData.Damage;
+        Damage = _cubeData.Damage;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -23,9 +23,12 @@ public class CubeAttack : MonoBehaviour
     {
         if (cube != null)
         {
-            cube.Health -= _damage;
+            cube.Health -= Damage;
             if (cube.Health <= 0)
+            {
                 Score++;
+                Damage += cube.gameObject.GetComponent<CubeAttack>().Damage;
+            }
             yield return new WaitForSeconds(1);
             IEnumerator coroutine = Attack(cube);
             StartCoroutine(coroutine);
