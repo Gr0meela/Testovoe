@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CubeAttack : MonoBehaviour
 {
+    public int Score = 0;
     private int _damage;
     [SerializeField] private CubeDataSO _cubeData;
     void Start()
@@ -23,6 +24,8 @@ public class CubeAttack : MonoBehaviour
         if (cube != null)
         {
             cube.Health -= _damage;
+            if (cube.Health <= 0)
+                Score++;
             yield return new WaitForSeconds(1);
             IEnumerator coroutine = Attack(cube);
             StartCoroutine(coroutine);
