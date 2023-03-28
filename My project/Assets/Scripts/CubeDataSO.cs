@@ -8,5 +8,4 @@ public class CubeDataSO : ScriptableObject
 
     [Range(5, 50)]
     public int Damage;
-
 }
